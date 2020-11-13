@@ -8,6 +8,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import mean_squared_error
+from sklearn.tree import DecisionTreeRegressor
 
 vegas = import_vegas_data()
 
@@ -20,7 +21,7 @@ vegas_test = test_set.reset_index(drop=True).copy()
 vegas_train_input, vegas_train_output = separate_input_output(vegas_train)
 vegas_test_input, vegas_test_output = separate_input_output(vegas_test)
 
-# List the different type of columns for the pipelin
+# List the different type of columns for the pipeline
 all_cats = list(vegas_train_input.columns)
 all_cats.remove('Hotel stars')
 all_cats.remove('Nr. rooms')
@@ -48,9 +49,17 @@ main_pipeline = ColumnTransformer([
 # Passing the inputs in the main pipeline
 vegas_train_input = main_pipeline.fit_transform(vegas_train_input)
 vegas_test_input = main_pipeline.transform(vegas_test_input)
+
 #Trying linear regression
 lr = LinearRegression()
 lr.fit(vegas_train_input,vegas_train_output)
 predictions = lr.predict(vegas_test_input)
 linear_mse = mean_squared_error(predictions,vegas_test_output)
-print(np.sqrt(linear_mse))
+print('Error with linear regression : ', np.sqrt(linear_mse))
+
+# Trying with DecisionTree
+DecisionTree = DecisionTreeRegressor()
+DecisionTree.fit(vegas_train_input,vegas_train_output)
+predictions = DecisionTree.predict(vegas_test_input)
+DecisionTree_mse = mean_squared_error(predictions,vegas_test_output)
+print('Error Decision Tree : ', np.sqrt(DecisionTree_mse))
