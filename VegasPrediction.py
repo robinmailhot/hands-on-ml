@@ -1,9 +1,8 @@
 import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-from Customs import import_vegas_data, ReplaceTextBools, DropUselessCols, ReplaceOneHot, print_cor
-from Customs import separate_input_output, GetHotelStars
+from CustomClasses import import_vegas_data, ReplaceTextBools, DropUselessCols, ReplaceOneHot, print_cor
+from CustomClasses import separate_input_output, GetHotelStars
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
@@ -55,7 +54,3 @@ lr.fit(vegas_train_input,vegas_train_output)
 predictions = lr.predict(vegas_test_input)
 linear_mse = mean_squared_error(predictions,vegas_test_output)
 print(np.sqrt(linear_mse))
-
-
-
-print('moma')

@@ -1,15 +1,9 @@
-import os
-import pandas as pd
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, MinMaxScaler
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.base import TransformerMixin, BaseEstimator
-import os
-import xlrd
 
 
-
-#path=os.path.join(os.getcwd(),
 def import_vegas_data(path='data\\lasvegas_data.csv'):
     """
     path : path to the CSV file
@@ -105,6 +99,3 @@ class MinMaxDrop(BaseEstimator, TransformerMixin):
         if self.replace:
             X=1
         return X
-
-
-
