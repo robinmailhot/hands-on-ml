@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-from CustomClasses import import_vegas_data, ReplaceTextBools, DropUselessCols, ReplaceOneHot, print_cor
-from CustomClasses import separate_input_output, GetHotelStars
+from Regression.CustomClasses import import_vegas_data, ReplaceTextBools, DropUselessCols, ReplaceOneHot, print_cor
+from Regression.CustomClasses import separate_input_output, GetHotelStars
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
