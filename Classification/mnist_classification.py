@@ -2,6 +2,8 @@ from sklearn.datasets import fetch_openml
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as  np
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score
 
 
 
@@ -17,4 +19,8 @@ plt.axis('off')
 plt.show()
 
 X_train, X_test, Y_train, Y_test = Data[:60000], Data[60000:], Target[:60000], Target[60000:]
-print(mnist.keys())
+
+knn = KNeighborsClassifier(n_jobs=10)
+knn.fit(X_train,Y_train)
+result = cross_val_score(knn, X_train, Y_train,cv=3,scoring='accuracy')
+print('moma')
